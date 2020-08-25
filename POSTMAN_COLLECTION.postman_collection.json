@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "e1892304-2df6-450d-b17f-1aeded61efd8",
+		"name": "POSTMAN_COLLECTION",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://api.nasa.gov/planetary/apod?api_key=3W0LC9qJFHM69XwZQsj5OrI7WKQ9dmcnTynT7eeG",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4237ed4b-69f6-4bf6-9561-5a70db97c6c9",
+						"exec": [
+							"//1. Correct response format json\r",
+							"pm.test(\"Correct response format json\", function(){\r",
+							"    pm.response.to.have.jsonBody()\r",
+							"});\r",
+							"\r",
+							"//2. We have all the declared fields in the response\r",
+							"pm.test(\"We have all the declared fields in the response\", function(){\r",
+							"    const jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"date\");\r",
+							"    pm.expect(jsonData).to.have.property(\"explanation\");\r",
+							"    pm.expect(jsonData).to.have.property(\"hdurl\");\r",
+							"    pm.expect(jsonData).to.have.property(\"media_type\")\r",
+							"});\r",
+							"\r",
+							"//3. Field value isn't NULL\r",
+							"pm.test(\"Field value isn't NULL\", function(){\r",
+							"    var jsonData=pm.response.json();\r",
+							"    pm.expect(jsonData.date).not.equal(null);\r",
+							"    pm.expect(jsonData.explanation).not.equal(null)\r",
+							"    pm.expect(jsonData.hdurl).not.equal(null);\r",
+							"    pm.expect(jsonData.media_type).not.equal(null)\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "authority",
+						"value": "stackoverflow.com"
+					},
+					{
+						"key": "cache-control",
+						"value": "max-age=0"
+					},
+					{
+						"key": "upgrade-insecure-requests",
+						"value": "1"
+					},
+					{
+						"key": "user-agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 OPR/69.0.3686.95"
+					},
+					{
+						"key": "accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9"
+					},
+					{
+						"key": "sec-fetch-site",
+						"value": "none"
+					},
+					{
+						"key": "sec-fetch-mode",
+						"value": "navigate"
+					},
+					{
+						"key": "sec-fetch-user",
+						"value": "?1"
+					},
+					{
+						"key": "sec-fetch-dest",
+						"value": "document"
+					},
+					{
+						"key": "accept-language",
+						"value": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"
+					},
+					{
+						"key": "cookie",
+						"value": "prov=649d6205-83ab-4a5d-a270-65fa8954bbdf; _ga=GA1.2.999117193.1597086245; _gid=GA1.2.113314091.1597086245; __qca=P0-1710056240-1597086245664"
+					}
+				],
+				"url": {
+					"raw": "https://api.nasa.gov/planetary/apod?api_key=3W0LC9qJFHM69XwZQsj5OrI7WKQ9dmcnTynT7eeG",
+					"protocol": "https",
+					"host": [
+						"api",
+						"nasa",
+						"gov"
+					],
+					"path": [
+						"planetary",
+						"apod"
+					],
+					"query": [
+						{
+							"key": "api_key",
+							"value": "3W0LC9qJFHM69XwZQsj5OrI7WKQ9dmcnTynT7eeG"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
